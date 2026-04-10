@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 
 interface ConfirmationData {
@@ -20,7 +20,7 @@ interface ConfirmationData {
   };
 }
 
-export default function ConfirmationPage() {
+function ConfirmationContent() {
   const params = useParams();
   const searchParams = useSearchParams();
   const regId = searchParams.get("reg");
@@ -136,5 +136,13 @@ export default function ConfirmationPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ConfirmationPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="text-gray-400">Loading...</div></div>}>
+      <ConfirmationContent />
+    </Suspense>
   );
 }

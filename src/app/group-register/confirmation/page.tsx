@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
@@ -29,7 +29,7 @@ interface GroupData {
   registrations: Registration[];
 }
 
-export default function GroupConfirmationPage() {
+function GroupConfirmationContent() {
   const searchParams = useSearchParams();
   const groupId = searchParams.get("group");
   const [data, setData] = useState<GroupData | null>(null);
@@ -221,5 +221,13 @@ export default function GroupConfirmationPage() {
         </div>
       </main>
     </div>
+  );
+}
+
+export default function GroupConfirmationPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[var(--background)] flex items-center justify-center"><div className="text-gray-400">Loading...</div></div>}>
+      <GroupConfirmationContent />
+    </Suspense>
   );
 }
