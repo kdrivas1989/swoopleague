@@ -20,7 +20,6 @@ export default function EventsTabs({ meets, courses, other, eventIdForWaiver }: 
 
   const tabs: { key: Tab; label: string }[] = [
     { key: "competitions", label: "Competitions" },
-    { key: "courses", label: "Canopy Courses" },
     { key: "alterego", label: "Alter Ego Project" },
     { key: "waiver", label: "Waiver" },
   ];
@@ -74,28 +73,29 @@ export default function EventsTabs({ meets, courses, other, eventIdForWaiver }: 
         </div>
       )}
 
-      {/* Canopy Courses Tab */}
-      {activeTab === "courses" && (
+      {/* Alter Ego Project Tab (includes courses) */}
+      {activeTab === "alterego" && (
         <div>
-          <h2 className="text-2xl font-bold text-[var(--accent-gold)] mb-2 uppercase tracking-wide">
-            Canopy Piloting Courses
-          </h2>
-          <p className="text-gray-400 mb-6">
-            Powered by The Alter Ego Project
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {courses.map((event) => (
-              <EventCard key={event.id} event={event} />
-            ))}
-          </div>
-          {courses.length === 0 && (
-            <p className="text-gray-500 text-center py-12">No courses currently scheduled.</p>
+          <AlterEgoTab />
+
+          {/* Upcoming Courses */}
+          {courses.length > 0 && (
+            <div className="mt-12">
+              <h2 className="text-2xl font-bold text-[var(--accent-gold)] mb-2 uppercase tracking-wide">
+                Upcoming Courses
+              </h2>
+              <p className="text-gray-400 mb-6">
+                Register for an upcoming Alter Ego Project canopy coaching course
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {courses.map((event) => (
+                  <EventCard key={event.id} event={event} />
+                ))}
+              </div>
+            </div>
           )}
         </div>
       )}
-
-      {/* Alter Ego Project Tab */}
-      {activeTab === "alterego" && <AlterEgoTab />}
 
       {/* Waiver Tab */}
       {activeTab === "waiver" && (
