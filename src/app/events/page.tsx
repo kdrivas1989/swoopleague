@@ -87,6 +87,7 @@ export default function EventsPage() {
       {/* Footer */}
       <footer className="border-t border-card-border py-8 text-center text-gray-500 text-sm">
         <p>&copy; {new Date().getFullYear()} USCPA. All Rights Reserved.</p>
+        <a href="/admin/login" className="mt-2 inline-block text-xs text-gray-600 hover:text-gray-400 transition-colors">Admin</a>
       </footer>
     </div>
   );
