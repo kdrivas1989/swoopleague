@@ -4,23 +4,19 @@ import { useState } from "react";
 import Link from "next/link";
 import EventCard from "@/components/EventCard";
 import type { EventCardEvent } from "@/components/EventCard";
-import AlterEgoTab from "@/components/AlterEgoTab";
-
-type Tab = "competitions" | "courses" | "alterego" | "waiver";
+type Tab = "competitions" | "waiver";
 
 interface EventsTabsProps {
   meets: EventCardEvent[];
-  courses: EventCardEvent[];
   other: EventCardEvent[];
   eventIdForWaiver: number | null;
 }
 
-export default function EventsTabs({ meets, courses, other, eventIdForWaiver }: EventsTabsProps) {
+export default function EventsTabs({ meets, other, eventIdForWaiver }: EventsTabsProps) {
   const [activeTab, setActiveTab] = useState<Tab>("competitions");
 
   const tabs: { key: Tab; label: string }[] = [
     { key: "competitions", label: "Competitions" },
-    { key: "alterego", label: "Alter Ego Project" },
     { key: "waiver", label: "Waiver" },
   ];
 
@@ -70,30 +66,6 @@ export default function EventsTabs({ meets, courses, other, eventIdForWaiver }: 
               <EventCard key={event.id} event={event} />
             ))}
           </div>
-        </div>
-      )}
-
-      {/* Alter Ego Project Tab (includes courses) */}
-      {activeTab === "alterego" && (
-        <div>
-          <AlterEgoTab />
-
-          {/* Upcoming Courses */}
-          {courses.length > 0 && (
-            <div className="mt-12">
-              <h2 className="text-2xl font-bold text-[var(--accent-gold)] mb-2 uppercase tracking-wide">
-                Upcoming Courses
-              </h2>
-              <p className="text-gray-400 mb-6">
-                Register for an upcoming Alter Ego Project canopy coaching course
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {courses.map((event) => (
-                  <EventCard key={event.id} event={event} />
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       )}
 

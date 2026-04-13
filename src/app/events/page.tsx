@@ -45,7 +45,6 @@ function getEvents(): EventCardEvent[] {
 export default function EventsPage() {
   const events = getEvents();
   const meets = events.filter((e) => e.type === "meet" || e.type === "freestyle");
-  const courses = events.filter((e) => e.type === "course");
   const other = events.filter((e) => e.type === "league" || e.type === "team");
 
   // Use the first published meet for the waiver link
@@ -78,7 +77,6 @@ export default function EventsPage() {
       <main className="max-w-6xl mx-auto px-4 pb-16">
         <EventsTabs
           meets={meets}
-          courses={courses}
           other={other}
           eventIdForWaiver={eventIdForWaiver}
         />
