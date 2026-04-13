@@ -18,6 +18,7 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 ENV NODE_OPTIONS="--max-old-space-size=256"
+ENV HOSTNAME=0.0.0.0
 ENV PORT=3000
 ENV DATABASE_PATH=/data/swoopleague.db
 
